@@ -1,0 +1,13 @@
+{
+  "name": "tencentcloud-mini-sdk",
+  "version": "1.0.0",
+  "description": "a lite, third-part sdk for tencent cloud",
+  "main": "main.js",
+  "keywords": ["tencent", "cloud", "sdk"],
+  "author": "liyi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liyi/tencentcloud-mini-sdk.git"
+  },
+  "license": "MIT"
+}
