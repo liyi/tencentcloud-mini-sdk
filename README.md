@@ -3,7 +3,7 @@
 ## 安装
 
 ```shell
-pip install git+https://github.com/liyi/tencentcloud-mini-sdk.git@python#egg=tencentcloud-mini-sdk
+pip install git+https://github.com/liyi/tencentcloud-mini-sdk.git@python
 ```
 
 ## 示例
@@ -89,6 +89,8 @@ class CvmClient:
             print(res)
         except Exception as err:
             print(err)
+    
+    # 更多自定义方法...
 
 
 cvm_client = CvmClient(
