@@ -1,0 +1,6 @@
+*
+!/.gitignore
+!/LICENSE
+!/main.js
+!/package.json
+!/README.md
