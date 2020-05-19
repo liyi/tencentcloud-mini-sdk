@@ -1,0 +1,7 @@
+*
+__pycache__/
+!/tencentcloud_mini_sdk/
+!/.gitignore
+!/LICENSE
+!/README.md
+!/setup.py
