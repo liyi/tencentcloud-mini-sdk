@@ -14,6 +14,7 @@ npm install liyi/tencentcloud-mini-sdk#nodejs
 
 ```javascript
 const sdk = require('tencentcloud-mini-sdk')
+
 // 获取CVM地域列表
 sdk({
   secretId: 'abcdefghijklmnopqrstuvwxyz', // 替换为你的SecretId
@@ -33,6 +34,8 @@ sdk({
 ### 二次封装
 
 ```javascript
+const sdk = require('tencentcloud-mini-sdk')
+
 const cvmClient = function (params) {
   return sdk({
     secretId: 'abcdefghijklmnopqrstuvwxyz',
@@ -57,6 +60,8 @@ cvmClient({
 ### 基于类的二次封装
 
 ```javascript
+const sdk = require('tencentcloud-mini-sdk')
+
 class CvmClient {
   constructor ({
     secretId,
