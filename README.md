@@ -89,7 +89,7 @@ class CvmClient {
     })
   }
 
-  // 更多自定义类方法...
+  // 更多自定义方法...
 }
 
 const cvmClient = new CvmClient({
