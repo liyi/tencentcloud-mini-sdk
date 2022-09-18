@@ -43,7 +43,7 @@ function sign ({
   const credentialScope = `${date}/${service}/tc3_request`
 
   /* 第1步：拼接规范请求串 */
-  const canonicalRequest = 
+  const canonicalRequest =
 `POST
 /
 
@@ -54,7 +54,7 @@ ${signedHeaders}
 ${sha256(payload).digest('hex')}`
 
   /* 第2步：拼接待签名字符串 */
-  const stringToSign = 
+  const stringToSign =
 `${algorithm}
 ${timestamp}
 ${credentialScope}
@@ -79,7 +79,8 @@ module.exports = function ({
   host,
   params
 }) {
-  const payload = unicode(JSON.stringify(params))
+  const { Action, Region, Timestamp, Version, Token, Language, ...payloadObj } = params
+  const payload = unicode(JSON.stringify(payloadObj))
   const timestamp = parseInt(Date.now() / 1000)
   const authorization = sign({
     secretId,
@@ -90,20 +91,23 @@ module.exports = function ({
     payload
   })
 
+  const headers = {}
+  headers['Content-Type'] = 'application/json; charset=utf-8'
+  headers['Authorization'] = authorization
+  headers['Host'] = host
+  headers['X-TC-Timestamp'] = timestamp
+  !!params.Action && (headers['X-TC-Action'] = params.Action)
+  !!params.Region && (headers['X-TC-Region'] = params.Region)
+  !!params.Version && (headers['X-TC-Version'] = params.Version)
+  !!params.Token && (headers['X-TC-Token'] = params.Token)
+  !!params.Language && (headers['X-TC-Language'] = params.Language)
+
   return new Promise((resolve, reject) => {
     const req = https.request(
       `https://${host}`,
       {
         method: 'POST',
-        headers: {
-          Authorization: authorization,
-          'Content-Type': 'application/json; charset=utf-8',
-          Host: host,
-          'X-TC-Action': params.Action,
-          'X-TC-Version': params.Version,
-          'X-TC-Timestamp': timestamp,
-          'X-TC-Region': params.Region
-        }
+        headers
       },
       res => {
         let data = ''
